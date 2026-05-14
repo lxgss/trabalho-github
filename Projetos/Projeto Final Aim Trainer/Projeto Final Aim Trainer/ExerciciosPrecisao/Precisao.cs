@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Aimlabs_prot;
+//using Aimlabs_prot;
 using Projeto_Final_Aim_Trainer;
 
 namespace Projeto_Final_Aim_Trainer
@@ -23,8 +23,13 @@ namespace Projeto_Final_Aim_Trainer
 
         private void pictureBox1_Click_1(object sender, EventArgs e)
         {
-            Gridshot grid  = new Gridshot();
+            GridShot grid  = new GridShot();
             grid.Show();
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

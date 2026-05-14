@@ -33,5 +33,11 @@ namespace Projeto_Final_Aim_Trainer
         {
             this.Close();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Tracking tracking = new Tracking();
+            tracking.Show();
+        }
     }
 }

@@ -167,11 +167,11 @@
     <Compile Include="Entrar\Entrar.Designer.cs">
       <DependentUpon>Entrar.cs</DependentUpon>
     </Compile>
-    <Compile Include="Gridshot.cs">
+    <Compile Include="GridShot\GridShot.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Gridshot.Designer.cs">
-      <DependentUpon>Gridshot.cs</DependentUpon>
+    <Compile Include="GridShot\GridShot.Designer.cs">
+      <DependentUpon>GridShot.cs</DependentUpon>
     </Compile>
     <Compile Include="Menu\Form1.cs">
       <SubType>Form</SubType>
@@ -194,6 +194,18 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SessaoUsuario.cs" />
+    <Compile Include="Tracking.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tracking.Designer.cs">
+      <DependentUpon>Tracking.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tracking1\tracking1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tracking1\tracking1.Designer.cs">
+      <DependentUpon>tracking1.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Criar conta\Criar.resx">
       <DependentUpon>Criar.cs</DependentUpon>
     </EmbeddedResource>
@@ -203,8 +215,8 @@
     <EmbeddedResource Include="ExerciciosPrecisao\Precisao.resx">
       <DependentUpon>Precisao.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Gridshot.resx">
-      <DependentUpon>Gridshot.cs</DependentUpon>
+    <EmbeddedResource Include="GridShot\GridShot.resx">
+      <DependentUpon>GridShot.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -221,6 +233,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Tracking.resx">
+      <DependentUpon>Tracking.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tracking1\tracking1.resx">
+      <DependentUpon>tracking1.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -89,4 +89,6 @@ C:\Users\2224094\Desktop\Projeto Final Aim Trainer\Projeto Final Aim Trainer\obj
 C:\Users\2224094\Desktop\Projeto Final Aim Trainer\Projeto Final Aim Trainer\obj\Debug\Projeto_Final_Aim_Trainer.Entrar.resources
 C:\Users\2224094\Desktop\Projeto Final Aim Trainer\Projeto Final Aim Trainer\obj\Debug\Projeto_Final_Aim_Trainer.Criar.resources
 C:\Users\2224094\Desktop\Projeto Final Aim Trainer\Projeto Final Aim Trainer\obj\Debug\Projeto_Final_Aim_Trainer.Precisao.resources
-C:\Users\2224094\Desktop\Projeto Final Aim Trainer\Projeto Final Aim Trainer\obj\Debug\Aimlabs_prot.Gridshot.resources
+C:\Users\2224094\Desktop\Projeto Final Aim Trainer\Projeto Final Aim Trainer\obj\Debug\Projeto_Final_Aim_Trainer.GridShot.resources
+C:\Users\2224094\Desktop\Projeto Final Aim Trainer\Projeto Final Aim Trainer\obj\Debug\Projeto_Final_Aim_Trainer.tracking1.resources
+C:\Users\2224094\Desktop\Projeto Final Aim Trainer\Projeto Final Aim Trainer\obj\Debug\Projeto_Final_Aim_Trainer.Tracking.resources
