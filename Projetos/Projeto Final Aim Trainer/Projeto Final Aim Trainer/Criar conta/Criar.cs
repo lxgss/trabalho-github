@@ -21,6 +21,8 @@ namespace Projeto_Final_Aim_Trainer
         private void button3_Click(object sender, EventArgs e)
         {
             this.Close();
+            Log_in_Sign_up log_In_Sign_Up = new Log_in_Sign_up();
+            log_In_Sign_Up.Show();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -69,6 +71,11 @@ namespace Projeto_Final_Aim_Trainer
                     }
                 }
             }
+        }
+
+        private void Criar_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -32,18 +32,24 @@ namespace Projeto_Final_Aim_Trainer
 
         private void button2_Click(object sender, EventArgs e)
         {
+           
             Entrar telaEntrar = new Entrar();
 
             // 2. Mostrar o formulário
             telaEntrar.Show();
+            this.Hide();
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            
             Criar telaCriar = new Criar();
 
             // 2. Mostrar o formulário
             telaCriar.Show();
+            this.Hide();
+
         }
     }
 }

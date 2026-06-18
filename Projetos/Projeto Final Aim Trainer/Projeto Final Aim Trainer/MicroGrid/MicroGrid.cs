@@ -2,43 +2,71 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using Microsoft.Data.SqlClient; // Namespace necessário para ligar à BD
+using Microsoft.Data.SqlClient; // Namespace para comunicar com a BD
 
 namespace Projeto_Final_Aim_Trainer
 {
-    public partial class tracking1 : Form
+    public partial class MicroGrid : Form
     {
-        // Variáveis de Jogo
         int pontos = 0;
         int tempoRestante = 60;
-
-        // Variáveis de Movimento (Velocidade)
-        int velX = 6;
-        int velY = 6;
+        Random rnd = new Random();
+        List<Point> posicoesMicro = new List<Point>();
 
         // 1. String de conexão oficial com o teu banco de dados localdb
         private string connectionString = @"Server=(localdb)\MSSQLLocalDB;Database=AimLabsDB;Trusted_Connection=True;Encrypt=False;";
 
-        // 2. O StrafeTrack está registado com o ID 5 na tua tabela dbo.Exercicios
-        private int idExercicioModo = 5;
+        // 2. O MicroGrid vai responder pelo ID 3 na tua tabela dbo.Exercicios
+        private int idExercicioModo = 3;
 
-        // CONSTRUTOR 1: Vazio. Evita o erro CS7036 ao carregar o ecrã a partir do menu de Tracking
-        public tracking1()
+        // CONSTRUTOR 1: Vazio. Evita o erro CS7036 ao abrir a partir de Precisao.cs
+        public MicroGrid()
         {
             InitializeComponent();
+            ConfigurarGrade();
         }
 
-        // CONSTRUTOR 2: Com parâmetros (Caso precises de passar sessões pelas rotas)
-        public tracking1(int idUser, int idEx)
+        // CONSTRUTOR 2: Com parâmetros (Caso precises de passar dados pelas rotas)
+        public MicroGrid(int idUser, int idEx)
         {
             InitializeComponent();
+            ConfigurarGrade();
             SessaoUsuario.ID_UserLogado = idUser;
             this.idExercicioModo = idEx;
         }
 
-        private void tracking1_Load(object sender, EventArgs e)
+        private void MicroGrid_Load(object sender, EventArgs e)
         {
             ReiniciarJogo();
+        }
+
+        private void ConfigurarGrade()
+        {
+            posicoesMicro.Clear();
+
+            // Distância entre os botões
+            int larguraCelula = 100;
+            int alturaCelula = 100;
+
+            // Tamanho total da grade 3x3
+            int larguraTotalGrade = larguraCelula * 3;
+            int alturaTotalGrade = alturaCelula * 3;
+
+            // Centralização no formulário
+            int inicioX = (this.ClientSize.Width - larguraTotalGrade) / 2;
+            int inicioY = (this.ClientSize.Height - alturaTotalGrade) / 2;
+
+            // CORRIGIDO: loop usa agora "linha++" de forma correta
+            for (int linha = 0; linha < 3; linha++)
+            {
+                for (int coluna = 0; coluna < 3; coluna++)
+                {
+                    int x = inicioX + (coluna * larguraCelula) + (larguraCelula / 2) - (btnAlvo1.Width / 2);
+                    int y = inicioY + (linha * alturaCelula) + (alturaCelula / 2) - (btnAlvo1.Height / 2);
+
+                    posicoesMicro.Add(new Point(x, y));
+                }
+            }
         }
 
         private void ReiniciarJogo()
@@ -48,51 +76,48 @@ namespace Projeto_Final_Aim_Trainer
             lblPontos.Text = "Pontos: 0";
             lblTimer.Text = "Tempo: 60s";
 
-            // Inicia os motores
+            // Configurar botões alvos
+            Button[] botoes = { btnAlvo1, btnAlvo2, btnAlvo3 };
+            foreach (var btn in botoes)
+            {
+                btn.Click -= btnAlvo_Click; // Remove para não duplicar o evento
+                btn.Click += btnAlvo_Click;
+                ReposicionarBotao(btn);
+            }
+
             gameTimer.Start();
-            movementTimer.Start();
         }
 
-        // Lógica de Movimento (Tick do movementTimer - Intervalo 20ms)
-        private void movementTimer_Tick(object sender, EventArgs e)
+        private void ReposicionarBotao(Button botao)
         {
-            // Move o botão
-            btnAlvo.Left += velX;
-            btnAlvo.Top += velY;
-
-            // Colisão Direita/Esquerda - APENAS INVERTE, NÃO MUDA COR
-            if (btnAlvo.Left <= 0 || btnAlvo.Right >= this.ClientSize.Width)
+            Point novaPosicao;
+            int tentatives = 0;
+            do
             {
-                velX = -velX;
-            }
+                novaPosicao = posicoesMicro[rnd.Next(posicoesMicro.Count)];
+                tentatives++;
+                if (tentatives > 100) break;
+            } while (novaPosicao == btnAlvo1.Location || novaPosicao == btnAlvo2.Location || novaPosicao == btnAlvo3.Location);
 
-            // Colisão Topo/Fundo - APENAS INVERTE
-            if (btnAlvo.Top <= 0 || btnAlvo.Bottom >= this.ClientSize.Height)
-            {
-                velY = -velY;
-            }
+            botao.Location = novaPosicao;
         }
 
-        // REGRA: +2 pontos ao acertar no alvo em movimento
         private void btnAlvo_Click(object sender, EventArgs e)
         {
-            pontos += 2;
-            lblPontos.Text = $"Pontos: {pontos}";
-
-            // Feedback visual ao clicar
-            btnAlvo.BackColor = Color.LightGreen; // Cor ao clicar
-            Timer t = new Timer { Interval = 100 };
-            t.Tick += (s, ev) =>
+            if (tempoRestante > 0)
             {
-                btnAlvo.BackColor = Color.Gold; // Fica amarelo depois do clique
-                t.Stop();
-                t.Dispose(); // Boa prática libertar o temporizador da memória
-            };
-            t.Start();
+                pontos += 2; // Adiciona 2 pontos
+                lblPontos.Text = $"Pontos: {pontos}";
+
+                if (sender is Button btn)
+                {
+                    ReposicionarBotao(btn);
+                    btn.BringToFront();
+                }
+            }
         }
 
-        // REGRA: -1 ponto ao clicar no vazio (Erro de precisão)
-        private void FormSquareTracking_MouseClick(object sender, MouseEventArgs e)
+        private void MicroGrid_MouseClick(object sender, MouseEventArgs e)
         {
             if (tempoRestante > 0)
             {
@@ -112,32 +137,28 @@ namespace Projeto_Final_Aim_Trainer
             }
         }
 
-        // REGRA: Timer decrescente de 60 a 0
         private void gameTimer_Tick(object sender, EventArgs e)
         {
             if (tempoRestante > 0)
             {
-                tempoRestante--; // Tira 1 segundo
-                lblTimer.Text = $"Tempo: {tempoRestante}s"; // Atualiza o ecrã
+                tempoRestante--;
+                lblTimer.Text = $"Tempo: {tempoRestante}s";
             }
             else
             {
-                // QUANDO O TEMPO ACABA:
-                gameTimer.Stop(); // Para o relógio
-                movementTimer.Stop(); // Para o quadrado de andar
-
+                gameTimer.Stop();
                 MessageBox.Show($"Treino Terminado!\nPontos: {pontos}");
 
-                // Grava automaticamente os pontos deste treino de Tracking na BD
+                // Grava automaticamente a pontuação na BD
                 GravarPontuacaoNoRanking();
 
-                ReiniciarJogo(); // Volta a colocar tudo a 60s e 0 pontos
+                ReiniciarJogo();
             }
         }
 
         private void GravarPontuacaoNoRanking()
         {
-            // Segurança: Só guarda se houver utilizador com login ativo
+            // Segurança: Só grava se houver sessão de utilizador ativa
             if (SessaoUsuario.ID_UserLogado <= 0)
             {
                 MessageBox.Show("Nenhum utilizador logado detetado. A pontuação não será guardada.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -154,7 +175,7 @@ namespace Projeto_Final_Aim_Trainer
                     using (SqlCommand comando = new SqlCommand(query, conexao))
                     {
                         comando.Parameters.AddWithValue("@idUser", SessaoUsuario.ID_UserLogado);
-                        comando.Parameters.AddWithValue("@idEx", idExercicioModo); // Envia o valor 5 correspondente ao StrafeTrack
+                        comando.Parameters.AddWithValue("@idEx", idExercicioModo); // Envia o ID 3
                         comando.Parameters.AddWithValue("@pontos", pontos);
                         comando.Parameters.AddWithValue("@data", DateTime.Now);
 
@@ -169,23 +190,11 @@ namespace Projeto_Final_Aim_Trainer
             }
         }
 
-        private void MudarCorAlvo()
-        {
-            // Apenas para dar um efeito visual quando o quadrado bate na parede
-            Random r = new Random();
-            btnAlvo.BackColor = Color.FromArgb(r.Next(256), r.Next(256), r.Next(256));
-        }
-
-        private void movementTimer_Tick_1(object sender, EventArgs e)
-        {
-
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
-            Tracking tracking_menu = new Tracking();
-            tracking_menu.Show();
+            Precisao precisao = new Precisao();
+            precisao.Show();
         }
     }
 }

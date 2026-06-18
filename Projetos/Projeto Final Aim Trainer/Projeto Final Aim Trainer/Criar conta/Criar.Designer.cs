@@ -122,6 +122,7 @@
             this.Controls.Add(this.textBox1);
             this.Name = "Criar";
             this.Text = "Criar";
+            this.Load += new System.EventHandler(this.Criar_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

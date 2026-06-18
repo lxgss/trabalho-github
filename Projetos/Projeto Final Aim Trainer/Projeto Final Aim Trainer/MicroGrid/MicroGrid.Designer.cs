@@ -1,6 +1,6 @@
 ﻿namespace Projeto_Final_Aim_Trainer
 {
-    partial class GridShot
+    partial class MicroGrid
     {
         /// <summary>
         /// Required designer variable.
@@ -43,31 +43,29 @@
             this.lblTimer.AutoSize = true;
             this.lblTimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTimer.ForeColor = System.Drawing.SystemColors.Control;
-            this.lblTimer.Location = new System.Drawing.Point(591, 7);
+            this.lblTimer.Location = new System.Drawing.Point(586, 7);
             this.lblTimer.Name = "lblTimer";
             this.lblTimer.Size = new System.Drawing.Size(89, 29);
-            this.lblTimer.TabIndex = 9;
+            this.lblTimer.TabIndex = 14;
             this.lblTimer.Text = "Timer: ";
-            this.lblTimer.Click += new System.EventHandler(this.btnAlvo_Click);
-            this.lblTimer.MouseClick += new System.Windows.Forms.MouseEventHandler(this.GridShot_MouseClick);
             // 
             // btnAlvo2
             // 
             this.btnAlvo2.BackColor = System.Drawing.Color.Gold;
-            this.btnAlvo2.Location = new System.Drawing.Point(534, 232);
+            this.btnAlvo2.Location = new System.Drawing.Point(543, 289);
             this.btnAlvo2.Name = "btnAlvo2";
-            this.btnAlvo2.Size = new System.Drawing.Size(89, 74);
-            this.btnAlvo2.TabIndex = 8;
+            this.btnAlvo2.Size = new System.Drawing.Size(47, 42);
+            this.btnAlvo2.TabIndex = 13;
             this.btnAlvo2.UseVisualStyleBackColor = false;
             this.btnAlvo2.Click += new System.EventHandler(this.btnAlvo_Click);
             // 
             // btnAlvo3
             // 
             this.btnAlvo3.BackColor = System.Drawing.Color.Gold;
-            this.btnAlvo3.Location = new System.Drawing.Point(629, 232);
+            this.btnAlvo3.Location = new System.Drawing.Point(641, 289);
             this.btnAlvo3.Name = "btnAlvo3";
-            this.btnAlvo3.Size = new System.Drawing.Size(89, 74);
-            this.btnAlvo3.TabIndex = 7;
+            this.btnAlvo3.Size = new System.Drawing.Size(44, 42);
+            this.btnAlvo3.TabIndex = 12;
             this.btnAlvo3.UseVisualStyleBackColor = false;
             this.btnAlvo3.Click += new System.EventHandler(this.btnAlvo_Click);
             // 
@@ -76,21 +74,19 @@
             this.lblPontos.AutoSize = true;
             this.lblPontos.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPontos.ForeColor = System.Drawing.SystemColors.Control;
-            this.lblPontos.Location = new System.Drawing.Point(445, 7);
+            this.lblPontos.Location = new System.Drawing.Point(440, 7);
             this.lblPontos.Name = "lblPontos";
             this.lblPontos.Size = new System.Drawing.Size(100, 29);
-            this.lblPontos.TabIndex = 6;
+            this.lblPontos.TabIndex = 11;
             this.lblPontos.Text = "Pontos: ";
-            this.lblPontos.Click += new System.EventHandler(this.btnAlvo_Click);
-            this.lblPontos.MouseClick += new System.Windows.Forms.MouseEventHandler(this.GridShot_MouseClick);
             // 
             // btnAlvo1
             // 
             this.btnAlvo1.BackColor = System.Drawing.Color.Gold;
-            this.btnAlvo1.Location = new System.Drawing.Point(439, 232);
+            this.btnAlvo1.Location = new System.Drawing.Point(448, 289);
             this.btnAlvo1.Name = "btnAlvo1";
-            this.btnAlvo1.Size = new System.Drawing.Size(89, 74);
-            this.btnAlvo1.TabIndex = 5;
+            this.btnAlvo1.Size = new System.Drawing.Size(47, 42);
+            this.btnAlvo1.TabIndex = 10;
             this.btnAlvo1.UseVisualStyleBackColor = false;
             this.btnAlvo1.Click += new System.EventHandler(this.btnAlvo_Click);
             // 
@@ -103,16 +99,15 @@
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.Crimson;
-            this.button1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button1.Location = new System.Drawing.Point(1074, 12);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(96, 26);
-            this.button1.TabIndex = 13;
+            this.button1.TabIndex = 15;
             this.button1.Text = "Sair";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // GridShot
+            // MicroGrid
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -124,11 +119,10 @@
             this.Controls.Add(this.btnAlvo3);
             this.Controls.Add(this.lblPontos);
             this.Controls.Add(this.btnAlvo1);
-            this.ForeColor = System.Drawing.SystemColors.Control;
-            this.Name = "GridShot";
-            this.Text = "GridShot";
-            this.Load += new System.EventHandler(this.GridShot_Load);
-            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.GridShot_MouseClick);
+            this.Name = "MicroGrid";
+            this.Text = "MicroGrid";
+            this.Load += new System.EventHandler(this.MicroGrid_Load);
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.MicroGrid_MouseClick);
             this.ResumeLayout(false);
             this.PerformLayout();
 

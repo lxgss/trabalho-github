@@ -106,7 +106,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Name = "Log_in_Sign_up";
-            this.Text = "Log_in_Sign_up";
+            this.Text = "<";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
